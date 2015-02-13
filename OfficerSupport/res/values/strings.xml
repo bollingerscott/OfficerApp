@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Officer Support</string>
+    <string name="title_activity_main">PSS Officer Support</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="caseList">Case List</string>
+    <string name="audioRecording">Audio Recording</string>
+    <string name="camera">Camera</string>
+    <string name="map">Map</string>
+    <string name="title_activity_case_list">CaseList</string>
+
+</resources>
