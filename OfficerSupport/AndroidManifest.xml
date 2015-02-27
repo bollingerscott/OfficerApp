@@ -19,6 +19,7 @@
             android:launchMode="standard" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -29,6 +30,10 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.pss.wsu.officersupport.MainActivity" />
+        </activity>
+        <activity
+            android:name=".EditCase"
+            android:label="@string/title_activity_edit_case" >
         </activity>
     </application>
 
