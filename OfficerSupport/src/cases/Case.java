@@ -2,14 +2,14 @@ package cases;
 
 import java.util.HashMap;
 
-public abstract class Case {
+public class Case {
 	
 	HashMap<String, Person> witnesses; 		//map of name to person object
 	HashMap<Integer, Person> suspects; 		//map of suspect # to suspect; # since name may be unknown
 	HashMap<String, Form> forms;			//map of type of form to form
 	String name;							//name of case
 	String description;						//description of case
-	int caseNum;							//# of case
+	Integer caseNum;							//# of case
 	
 	public Case(HashMap<String, Person> witnesses, HashMap<Integer, Person> suspects, HashMap<String, Form> forms, String name, String description, int caseNum) 
 	{	
@@ -55,15 +55,15 @@ public abstract class Case {
 		return name;
 	}
 
-	public void setFirstName(String name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 
-	public int getCaseNum() {
+	public Integer getCaseNum() {
 		return caseNum;
 	}
 
-	public void setCaseNum(int caseNum) {
+	public void setCaseNum(Integer caseNum) {
 		this.caseNum = caseNum;
 	}
 
@@ -73,5 +73,9 @@ public abstract class Case {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public String toString() {
+		return caseNum.toString() + " " + name + " " + description;
 	}
 }
