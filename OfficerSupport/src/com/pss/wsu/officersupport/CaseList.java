@@ -1,46 +1,42 @@
 package com.pss.wsu.officersupport;
 
-import android.app.ActionBar.LayoutParams;
 import android.app.ListActivity;
-import android.app.LoaderManager;
-import android.content.Loader;
-import android.database.Cursor;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewGroup;
-import android.widget.ProgressBar;
+import android.view.View;
+import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
-public class CaseList extends ListActivity  implements LoaderManager.LoaderCallbacks<Cursor> {
+public class CaseList extends ListActivity {
 
-    // This is the Adapter being used to display the list's data
-    SimpleCursorAdapter mAdapter;
+	// This is the Adapter being used to display the list's data
+	SimpleCursorAdapter mAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-        // Create a progress bar to display while the list loads
-        ProgressBar progressBar = new ProgressBar(this);
-        progressBar.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, Gravity.CENTER));
-        progressBar.setIndeterminate(true);
-        getListView().setEmptyView(progressBar);
+		//TODO Cursor cursor = getContentResolver().query(People.CONTENT_URI, new String[] {People._ID, People.NAME, People.NUMBER}, null, null, null);
 
-        // Must add the progress bar to the root of the layout
-        ViewGroup root = (ViewGroup) findViewById(android.R.id.content);
-        root.addView(progressBar);
-        
-        // Create an empty adapter we will use to display the loaded data.
-        // We pass null for the cursor, then update it in onLoadFinished()
-        //mAdapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_1, null, /*from, to,*/ 0);
-        setListAdapter(mAdapter);
+		// the desired columns to be bound
+		//TODO String[] columns = new String[] { People.NAME, People.NUMBER };
+		// the XML defined views which the data will be bound to
+		int[] to = new int[] { R.id.case_number, R.id.case_description };
 
-        // Prepare the loader.  Either re-connect with an existing one,
-        // or start a new one.
-        getLoaderManager().initLoader(0, null, this);
-    }
+		// Create an empty adapter we will use to display the loaded data.
+		// We pass null for the cursor, then update it in onLoadFinished()
+		//TODO mAdapter = new SimpleCursorAdapter(this, R.layout.caselist_entry_layout, cursor, columns, to, 0);
+		this.setListAdapter(mAdapter);
+	}
+
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		String item = (String) getListAdapter().getItem(position);
+		//TODO Go to activity for editing the case
+		Intent intent = new Intent(this, EditCase.class);
+		startActivity(intent);
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -61,21 +57,4 @@ public class CaseList extends ListActivity  implements LoaderManager.LoaderCallb
 		return super.onOptionsItemSelected(item);
 	}
 
-	@Override
-	public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void onLoadFinished(Loader<Cursor> arg0, Cursor arg1) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onLoaderReset(Loader<Cursor> arg0) {
-		// TODO Auto-generated method stub
-		
-	}
 }

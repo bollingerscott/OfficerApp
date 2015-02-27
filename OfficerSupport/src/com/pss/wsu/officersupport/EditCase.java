@@ -1,24 +1,24 @@
 package com.pss.wsu.officersupport;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
+//TODO Will have expandable list view for seeing witness etc.
+public class EditCase extends Activity {
 
-public class MainActivity extends Activity {
-
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_edit_case);
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
+		getMenuInflater().inflate(R.menu.edit_case, menu);
 		return true;
 	}
 
@@ -32,12 +32,5 @@ public class MainActivity extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
-	}
-	
-	//Called when user taps Case List button
-	public void goToCases(View view)
-	{
-		Intent intent = new Intent(this, CaseList.class);
-		startActivity(intent);
 	}
 }
