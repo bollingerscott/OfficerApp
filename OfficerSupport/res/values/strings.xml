@@ -9,7 +9,19 @@
     <string name="audioRecording">Audio Recording</string>
     <string name="camera">Camera</string>
     <string name="map">Map</string>
-    <string name="title_activity_case_list">CaseList</string>
-    <string name="title_activity_edit_case">EditCase</string>
-
+    <string name="title_activity_case_list">Case List</string>
+    <string name="title_activity_edit_case">Edit Case</string>
+    <string name="title_activity_incident__report">Incident Report</string>
+    <string name="admin">Administrative</string>
+	<string name="district">District</string>
+	<string name="incidentDistrict">District of the incident</string>
+	<string name="incidentNum">Incident Number</string>
+	<string name="offense">Offense</string>
+	<string name="supplement">Supplement</string>
+	<string name="tod">TOD</string>
+	<string name="toa">TOA</string>
+	<string name="toc">TOC</string>
+	<string name="reportdatetime">Report Date/Time</string>
+	<string name="reportdate">Report Date</string>
+	<string name="reportTime">Report Time</string>
 </resources>

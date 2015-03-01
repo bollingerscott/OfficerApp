@@ -35,6 +35,10 @@
             android:name=".EditCase"
             android:label="@string/title_activity_edit_case" >
         </activity>
+        <activity
+            android:name="forms.Incident_Report"
+            android:label="@string/title_activity_incident__report" >
+        </activity>
     </application>
 
 </manifest>

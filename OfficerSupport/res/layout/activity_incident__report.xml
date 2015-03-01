@@ -1,0 +1,209 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView1"
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent"
+    android:layout_below="@+id/radioGroupoffORsupp"
+    android:layout_marginTop="115dp"
+    android:layout_toEndOf="@+id/incidentNum"
+    android:fillViewport="true"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="forms.Incident_Report" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="941dp" >
+
+        <TextView
+            android:id="@+id/Administrative"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="9dp"
+            android:text="@string/admin"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/districtTxet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/Administrative"
+            android:layout_below="@+id/Administrative"
+            android:layout_marginTop="14dp"
+            android:text="@string/district"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <EditText
+            android:id="@+id/editDistrict"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/districtTxet"
+            android:layout_alignBottom="@+id/districtTxet"
+            android:layout_alignParentEnd="true"
+            android:ems="10"
+            android:hint="@string/incidentDistrict" />
+
+        <TextView
+            android:id="@+id/incidentNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/districtTxet"
+            android:layout_below="@+id/editDistrict"
+            android:layout_marginTop="15dp"
+            android:text="@string/incidentNum"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <EditText
+            android:id="@+id/editIncidentNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/incidentNum"
+            android:layout_alignBottom="@+id/incidentNum"
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@+id/Administrative"
+            android:ems="10"
+            android:hint="@string/incidentNum"
+            android:inputType="number" >
+        </EditText>
+
+        <RadioGroup
+            android:id="@+id/radioGroupoffORsupp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/incidentNum"
+            android:layout_below="@+id/editIncidentNum"
+            android:layout_marginTop="14dp" >
+
+            <RadioButton
+                android:id="@+id/offense"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/offense" />
+
+            <RadioButton
+                android:id="@+id/supplement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/supplement" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/TOD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/radioGroupoffORsupp"
+            android:layout_below="@+id/radioGroupoffORsupp"
+            android:layout_marginTop="20dp"
+            android:text="@string/tod"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <EditText
+            android:id="@+id/editTOD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/TOD"
+            android:layout_alignParentEnd="true"
+            android:layout_centerHorizontal="true"
+            android:ems="10"
+            android:hint="@string/tod" >
+
+            <requestFocus />
+        </EditText>
+
+        <TextView
+            android:id="@+id/TOA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/radioGroupoffORsupp"
+            android:layout_below="@+id/TOD"
+            android:layout_marginTop="20dp"
+            android:text="@string/toa"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <EditText
+            android:id="@+id/editTOA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/TOA"
+            android:layout_alignParentEnd="true"
+            android:layout_centerHorizontal="true"
+            android:ems="10"
+            android:hint="@string/toa" >
+
+            <requestFocus />
+        </EditText>
+
+        <TextView
+            android:id="@+id/TOC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/radioGroupoffORsupp"
+            android:layout_below="@+id/TOA"
+            android:layout_marginTop="20dp"
+            android:text="@string/toc"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <EditText
+            android:id="@+id/editTOC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/TOC"
+            android:layout_alignParentEnd="true"
+            android:layout_centerHorizontal="true"
+            android:ems="10"
+            android:hint="@string/toc" >
+
+            <requestFocus />
+        </EditText>
+
+        <TextView
+            android:id="@+id/ReportDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/TOC"
+            android:layout_below="@+id/TOC"
+            android:layout_marginTop="14dp"
+            android:text="@string/reportdate"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <EditText
+            android:id="@+id/editReportDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/ReportDate"
+            android:layout_alignParentEnd="true"
+            android:layout_centerHorizontal="true"
+            android:ems="10"
+            android:hint="@string/reportdate"
+            android:inputType="date" />
+
+        <TextView
+            android:id="@+id/ReportTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/ReportDate"
+            android:layout_below="@+id/ReportDate"
+            android:layout_marginTop="17dp"
+            android:text="@string/reportTime"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <EditText
+            android:id="@+id/editReportTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/ReportTime"
+            android:layout_alignBottom="@+id/ReportTime"
+            android:layout_alignLeft="@+id/editIncidentNum"
+            android:ems="10"
+            android:hint="@string/reportTime"
+            android:inputType="time" />
+
+    </RelativeLayout>
+
+</ScrollView>
