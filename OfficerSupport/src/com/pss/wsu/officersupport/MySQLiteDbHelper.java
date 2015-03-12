@@ -23,6 +23,7 @@ public class MySQLiteDbHelper extends SQLiteOpenHelper {
 
 	public MySQLiteDbHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
+
 	}
 
 	@Override

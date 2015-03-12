@@ -9,7 +9,7 @@ public class Case {
 	HashMap<String, Form> forms;			//map of type of form to form
 	String name;							//name of case
 	String description;						//description of case
-	Integer caseNum;							//# of case
+	Integer caseNum;						//# of case
 	
 	public Case(HashMap<String, Person> witnesses, HashMap<Integer, Person> suspects, HashMap<String, Form> forms, String name, String description, int caseNum) 
 	{	

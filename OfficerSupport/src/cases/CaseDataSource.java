@@ -1,6 +1,7 @@
 package cases;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import com.pss.wsu.officersupport.MySQLiteDbHelper;
@@ -37,11 +38,12 @@ public class CaseDataSource {
 		values.put(MySQLiteDbHelper.COLUMN_TITLE, title);
 		values.put(MySQLiteDbHelper.COLUMN_DESCR, descr);
 		long insertId = database.insert(MySQLiteDbHelper.TABLE_CASES, null, values);
-		Cursor cursor = database.query(MySQLiteDbHelper.TABLE_CASES,
+/*		Cursor cursor = database.query(MySQLiteDbHelper.TABLE_CASES,
 				allColumns, MySQLiteDbHelper.COLUMN_ID + " = " + insertId, null, null, null, null);
 		cursor.moveToFirst();
 		Case newCase = cursorToCase(cursor);
-		cursor.close();
+		cursor.close();*/
+		Case newCase = new Case(new HashMap<String, Person>(), new HashMap<Integer, Person>(), new HashMap<String, Form>(), title, descr, num);
 		return newCase;
 	}
 
@@ -70,7 +72,7 @@ public class CaseDataSource {
 	}
 
 	private Case cursorToCase(Cursor cursor) {
-		Case newCase = new Case(null, null, null, null, null, (Integer) null);
+		Case newCase = new Case(null, null, null, null, null, 0);
 		newCase.setCaseNum(cursor.getInt(0));
 		newCase.setName(cursor.getString(1));
 		newCase.setDescription(cursor.getString(2));

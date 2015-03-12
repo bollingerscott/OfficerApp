@@ -33,7 +33,7 @@ public class CaseList extends ListActivity {
 		datasource.open();
 
 		List<Case> values = datasource.getAllCases();
-		ArrayAdapter<Case> adapter = new ArrayAdapter<Case>(this, android.R.layout.activity_list_item, values);
+		ArrayAdapter<Case> adapter = new ArrayAdapter<Case>(this, android.R.layout.simple_list_item_1, values);
 		setListAdapter(adapter);
 		createDemoCases();
 		//Cursor cursor = getContentResolver().query();
@@ -52,9 +52,9 @@ public class CaseList extends ListActivity {
 	private void createDemoCases(){
 		@SuppressWarnings("unchecked")
 		ArrayAdapter<Case> adapter = (ArrayAdapter<Case>) getListAdapter();
-		Case case1 = datasource.createCase(1, "Serial Killer #1", "5 people have been killed");
-		Case case2 = datasource.createCase(1, "Traffic Accident #1", "Dummy didn't have lights on and  got hit by a car");
-		Case case3 = datasource.createCase(1, "Dumb Robber #1", "Guy robbed store with gun which turned out to be a banana");
+		Case case1 = datasource.createCase(1, "Serial Killer #1", "5 people have been murdered");
+		Case case2 = datasource.createCase(2, "Traffic Accident #1", "Dummy didn't have lights on and  got hit by a car");
+		Case case3 = datasource.createCase(3, "Dumb Robber #1", "Guy robbed store with gun which turned out to be a banana");
 		adapter.add(case1);
 		adapter.add(case2);
 		adapter.add(case3);
