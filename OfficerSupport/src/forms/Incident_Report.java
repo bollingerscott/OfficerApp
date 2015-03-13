@@ -1,5 +1,7 @@
 package forms;
 
+import cases.Form;
+
 import com.pss.wsu.officersupport.R;
 import com.pss.wsu.officersupport.R.id;
 import com.pss.wsu.officersupport.R.layout;
@@ -10,7 +12,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class Incident_Report extends Activity {
+public class Incident_Report extends Form {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

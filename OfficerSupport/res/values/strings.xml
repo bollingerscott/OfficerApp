@@ -24,4 +24,6 @@
 	<string name="reportdatetime">Report Date/Time</string>
 	<string name="reportdate">Report Date</string>
 	<string name="reportTime">Report Time</string>
+	<string name="newCase">New Case</string>
+	<string name="search">Search</string>
 </resources>
