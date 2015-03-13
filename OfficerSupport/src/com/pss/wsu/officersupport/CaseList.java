@@ -23,7 +23,7 @@ public class CaseList extends ListActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		datasource = new CaseDataSource(this);
+		datasource = CaseDataSource.getDataSource(this);
 		datasource.open();
 		values = new ArrayList<Case>();
 		datasource.deleteAll();
@@ -46,6 +46,7 @@ public class CaseList extends ListActivity {
 		adapter.add(case1);
 		adapter.add(case2);
 		adapter.add(case3);
+		//values.add(case1);values.add(case2);values.add(case3);
 		adapter.notifyDataSetChanged();
 	}
 
@@ -70,7 +71,8 @@ public class CaseList extends ListActivity {
 		// Handle presses on the action bar items
 		switch (item.getItemId()) {
 		case R.id.case_search:
-			search("Dumb Robber #1");
+			onSearchRequested();
+			//search("Dumb Robber #1");
 			return true;
 		case R.id.newCase:
 			Intent intent = new Intent(this, EditCase.class);
@@ -95,17 +97,27 @@ public class CaseList extends ListActivity {
 
 	private void search(String search)
 	{
-		Case myCase = datasource.findCase(search);
+		ArrayList<Case> found = new ArrayList<Case>();
+		Case myCase = null;//datasource.findCase(search);
+		for (int i = 0; i < values.size(); i++)
+		{
+			if (values.get(i).getName().equalsIgnoreCase(search))
+			{
+				myCase = values.get(i);
+				found.add(myCase);
+			}
+		}
 		@SuppressWarnings("unchecked")
 		ArrayAdapter<Case> adapter = (ArrayAdapter<Case>) getListAdapter();
-		adapter.clear();
-		if (myCase != null)
+		values.clear();
+		if (found.size() != 0)
 		{
-			adapter.add(myCase);
+			values = found;
+			adapter.addAll(values);
 		} 
 		else
 		{
-			adapter.add(new Case(null, null, null, "Not Found", "", 0));
+			values.add(new Case(null, null, null, "Not Found", "", 0));
 		}
 		adapter.notifyDataSetChanged();
 	}

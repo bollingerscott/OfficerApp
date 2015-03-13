@@ -19,7 +19,17 @@ public class CaseDataSource {
 	private MySQLiteDbHelper dbHelper;
 	private String[] allColumns = { MySQLiteDbHelper.CASE_ID, MySQLiteDbHelper.CASE_TITLE,  MySQLiteDbHelper.CASE_DESCR, 
 			MySQLiteDbHelper.CASE_WITNESSES, MySQLiteDbHelper.CASE_SUSPECTS, MySQLiteDbHelper.CASE_FORMS};
-
+	private static CaseDataSource myData = null;
+	
+	public static CaseDataSource getDataSource(Context context)
+	{
+		if (myData == null)
+		{
+			myData = new CaseDataSource(context);
+		}
+		return myData;
+	}
+	
 	public CaseDataSource(Context context) {
 		dbHelper = new MySQLiteDbHelper (context);
 	}
