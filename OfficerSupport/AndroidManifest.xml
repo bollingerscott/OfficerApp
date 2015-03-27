@@ -46,6 +46,9 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.pss.wsu.officersupport.MainActivity" />
+            <meta-data
+                android:name="android.app.default_searchable"
+                android:value=".CaseSearch" />
         </activity>
         <activity
             android:name=".EditCase"
@@ -55,7 +58,26 @@
             android:name=".Map"
             android:label="@string/title_activity_map" >
         </activity>
+        <activity
+            android:name=".CaseSearch"
+            android:label="@string/title_activity_case_search" >
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
 
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+        <activity
+            android:name=".ChooseForm"
+            android:label="@string/title_activity_choose_form" >
+        </activity>
+        <activity
+            android:name=".EditPerson"
+            android:label="@string/title_activity_edit_person" >
+        </activity>
+        
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyBJpwQl6mUG1XYzKsqKLlR7pQ731P6WThg" />

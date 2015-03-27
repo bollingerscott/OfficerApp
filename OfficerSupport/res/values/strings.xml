@@ -9,8 +9,49 @@
     <string name="audioRecording">Audio Recording</string>
     <string name="camera">Camera</string>
     <string name="map">Map</string>
+<<<<<<< HEAD
     <string name="title_activity_case_list">CaseList</string>
     <string name="title_activity_edit_case">EditCase</string>
     <string name="title_activity_map">Map</string>
+=======
+    <string name="title_activity_case_list">Case List</string>
+    <string name="title_activity_edit_case">Edit Case</string>
+    <string name="title_activity_incident__report">Incident Report</string>
+    <string name="admin">Administrative</string>
+    <string name="district">District</string>
+    <string name="incidentDistrict">District of the incident</string>
+    <string name="incidentNum">Incident Number</string>
+    <string name="offense">Offense</string>
+    <string name="supplement">Supplement</string>
+    <string name="tod">TOD</string>
+    <string name="toa">TOA</string>
+    <string name="toc">TOC</string>
+    <string name="reportdatetime">Report Date/Time</string>
+    <string name="reportdate">Report Date</string>
+    <string name="reportTime">Report Time</string>
+    <string name="newCase">New Case</string>
+    <string name="search">Search</string>
+    <string name="search_hint">Search Cases by Title</string>
+    <string name="title_activity_case_search">CaseSearch</string>
+    <string name="id">ID: </string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="save">Save</string>
+    <string name="newWitness">New Witness</string>
+    <string name="newSuspect">New Suspect</string>
+    <string name="newForm">New Form</string>
+    <string name="title_activity_choose_form">ChooseForm</string>
+    <string name="title_activity_edit_person">Edit Person</string>
+    <string name="fname">First Name</string>
+    <string name="lname">Last Name</string>
+    <string name="height">Height</string>
+    <string name="weight">Weight</string>
+    <string name="address">Address</string>
+    <string name="phone">Phone #</string>
+    <string name="suspect">Suspect</string>
+    <string name="witness">Witness</string>
+    <string name="statement">Statement</string>
+    <string name="audioRecordStatement">Audio Record Statement</string>
+>>>>>>> branch 'master' of https://github.com/bollingerscott/OfficerApp.git
 
 </resources>
