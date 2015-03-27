@@ -9,13 +9,9 @@
     <string name="audioRecording">Audio Recording</string>
     <string name="camera">Camera</string>
     <string name="map">Map</string>
-<<<<<<< HEAD
     <string name="title_activity_case_list">CaseList</string>
     <string name="title_activity_edit_case">EditCase</string>
     <string name="title_activity_map">Map</string>
-=======
-    <string name="title_activity_case_list">Case List</string>
-    <string name="title_activity_edit_case">Edit Case</string>
     <string name="title_activity_incident__report">Incident Report</string>
     <string name="admin">Administrative</string>
     <string name="district">District</string>
@@ -52,6 +48,5 @@
     <string name="witness">Witness</string>
     <string name="statement">Statement</string>
     <string name="audioRecordStatement">Audio Record Statement</string>
->>>>>>> branch 'master' of https://github.com/bollingerscott/OfficerApp.git
 
 </resources>
