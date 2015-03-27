@@ -40,4 +40,9 @@ public class MainActivity extends Activity {
 		Intent intent = new Intent(this, CaseList.class);
 		startActivity(intent);
 	}
+	
+	public void goToMap(View view){
+		Intent intent = new Intent(this, Map.class);
+		startActivity(intent);
+	}
 }

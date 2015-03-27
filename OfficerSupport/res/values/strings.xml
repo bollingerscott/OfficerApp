@@ -11,5 +11,6 @@
     <string name="map">Map</string>
     <string name="title_activity_case_list">CaseList</string>
     <string name="title_activity_edit_case">EditCase</string>
+    <string name="title_activity_map">Map</string>
 
 </resources>
