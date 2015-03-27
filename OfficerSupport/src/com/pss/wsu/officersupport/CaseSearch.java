@@ -52,8 +52,8 @@ public class CaseSearch extends ListActivity {
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		Case item = (Case) getListAdapter().getItem(position);
-		//TODO Go to activity for editing the case
 		Intent intent = new Intent(this, EditCase.class);
+		intent.putExtra("case", item);
 		startActivity(intent);
 	}
 	

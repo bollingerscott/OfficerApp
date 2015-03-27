@@ -28,5 +28,24 @@
     <string name="search">Search</string>
     <string name="search_hint">Search Cases by Title</string>
     <string name="title_activity_case_search">CaseSearch</string>
+    <string name="id">ID: </string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="save">Save</string>
+    <string name="newWitness">New Witness</string>
+    <string name="newSuspect">New Suspect</string>
+    <string name="newForm">New Form</string>
+    <string name="title_activity_choose_form">ChooseForm</string>
+    <string name="title_activity_edit_person">Edit Person</string>
+    <string name="fname">First Name</string>
+    <string name="lname">Last Name</string>
+    <string name="height">Height</string>
+    <string name="weight">Weight</string>
+    <string name="address">Address</string>
+    <string name="phone">Phone #</string>
+    <string name="suspect">Suspect</string>
+    <string name="witness">Witness</string>
+    <string name="statement">Statement</string>
+    <string name="audioRecordStatement">Audio Record Statement</string>
 
 </resources>

@@ -53,6 +53,14 @@
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
         </activity>
+        <activity
+            android:name=".ChooseForm"
+            android:label="@string/title_activity_choose_form" >
+        </activity>
+        <activity
+            android:name=".EditPerson"
+            android:label="@string/title_activity_edit_person" >
+        </activity>
     </application>
 
 </manifest>

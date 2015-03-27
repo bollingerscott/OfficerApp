@@ -1,19 +1,18 @@
-package forms;
+package com.pss.wsu.officersupport;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import cases.Form;
 
-import com.pss.wsu.officersupport.R;
-
-public class Incident_Report extends Form {
+public class EditPerson extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_incident__report);
+		setContentView(R.layout.activity_edit_person);
 	}
 
 	@Override

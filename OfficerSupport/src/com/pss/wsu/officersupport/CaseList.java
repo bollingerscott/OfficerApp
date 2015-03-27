@@ -46,15 +46,14 @@ public class CaseList extends ListActivity {
 		adapter.add(case1);
 		adapter.add(case2);
 		adapter.add(case3);
-		//values.add(case1);values.add(case2);values.add(case3);
 		adapter.notifyDataSetChanged();
 	}
 
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		Case item = (Case) getListAdapter().getItem(position);
-		//TODO Go to activity for editing the case
 		Intent intent = new Intent(this, EditCase.class);
+		intent.putExtra("case", item);
 		startActivity(intent);
 	}
 
@@ -93,32 +92,5 @@ public class CaseList extends ListActivity {
 	protected void onPause() {
 		datasource.close();
 		super.onPause();
-	}
-
-	private void search(String search)
-	{
-		ArrayList<Case> found = new ArrayList<Case>();
-		Case myCase = null;//datasource.findCase(search);
-		for (int i = 0; i < values.size(); i++)
-		{
-			if (values.get(i).getName().equalsIgnoreCase(search))
-			{
-				myCase = values.get(i);
-				found.add(myCase);
-			}
-		}
-		@SuppressWarnings("unchecked")
-		ArrayAdapter<Case> adapter = (ArrayAdapter<Case>) getListAdapter();
-		values.clear();
-		if (found.size() != 0)
-		{
-			values = found;
-			adapter.addAll(values);
-		} 
-		else
-		{
-			values.add(new Case(null, null, null, "Not Found", "", 0));
-		}
-		adapter.notifyDataSetChanged();
 	}
 }

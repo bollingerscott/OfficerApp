@@ -1,8 +1,10 @@
 package cases;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class Case {
+@SuppressWarnings("serial")
+public class Case implements Serializable {
 	
 	private HashMap<String, Person> witnessMap; 		//map of name to person object
 	private HashMap<Integer, Person> suspectMap; 		//map of suspect # to suspect; # since name may be unknown
