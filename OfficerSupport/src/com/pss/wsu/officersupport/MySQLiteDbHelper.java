@@ -13,6 +13,15 @@ public class MySQLiteDbHelper extends SQLiteOpenHelper {
 	public static final String CASE_WITNESSES = "witnesses";
 	public static final String CASE_SUSPECTS = "suspects";
 	public static final String CASE_FORMS = "forms";
+	public static final String TABLE_FORMS = "forms";
+	public static final String FORMS_ID = "formid";
+	public static final String FORMS_NAME = "name";
+	public static final String TABLE_INCIDENTS = "incidents";
+	public static final String INCIDENTS_ID = "incidentID";
+	public static final String INCIDENTS_DISTRICT = "district";
+	public static final String INCIDENTS_NUMBER = "number";
+	public static final String INCIDENTS_TYPE = "type";
+	public static final String INCIDENTS_TOD = "";
 
 	private static final String DATABASE_NAME = "cases.db";
 	private static final int DATABASE_VERSION = 1;
@@ -24,6 +33,8 @@ public class MySQLiteDbHelper extends SQLiteOpenHelper {
 			+ " text not null, " + CASE_DESCR
 			+ " text not null, " + CASE_WITNESSES + " text, " + CASE_SUSPECTS + " text, " + CASE_FORMS + " text);";
 
+	private static final String CREATE_FORMS = "create table";
+	
 	public MySQLiteDbHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 
