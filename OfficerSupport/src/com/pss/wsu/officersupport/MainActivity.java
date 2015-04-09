@@ -45,4 +45,9 @@ public class MainActivity extends Activity {
 		Intent intent = new Intent(this, Map.class);
 		startActivity(intent);
 	}
+	
+	public void goToRecording(View view){
+		Intent i = new Intent(this, AudioRecording.class);
+		startActivity(i);
+	}
 }

@@ -48,5 +48,6 @@
     <string name="witness">Witness</string>
     <string name="statement">Statement</string>
     <string name="audioRecordStatement">Audio Record Statement</string>
+    <string name="title_activity_audio_recording">Audio Recording</string>
 
 </resources>

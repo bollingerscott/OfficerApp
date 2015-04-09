@@ -36,6 +36,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:background="@drawable/button_background"
+        android:onClick="goToRecording"
         android:text="@string/audioRecording"
         android:textColor="#FFFFFFFF"
         android:textSize="20sp" />
