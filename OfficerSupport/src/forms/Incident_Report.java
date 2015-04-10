@@ -1,27 +1,25 @@
 package forms;
 
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import cases.Form;
-
 import com.pss.wsu.officersupport.R;
 
-public class Incident_Report extends Form {
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+
+public class Incident_Report extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_incident__report);
+		setContentView(R.layout.activity_incident_report);
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu items for use in the action bar
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.actionbar_editperson, menu);
-		return super.onCreateOptionsMenu(menu);
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.actionbar_editperson, menu);
+		return true;
 	}
 
 	@Override
@@ -31,7 +29,6 @@ public class Incident_Report extends Form {
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.save) {
-			//Save to DB
 			return true;
 		}
 		return super.onOptionsItemSelected(item);

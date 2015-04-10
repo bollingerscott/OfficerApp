@@ -17,6 +17,7 @@ import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.SimpleExpandableListAdapter;
 import cases.Case;
+import forms.*;
 
 public class EditCase extends ExpandableListActivity {
 
@@ -68,7 +69,15 @@ public class EditCase extends ExpandableListActivity {
 				}
 				else if (item.equalsIgnoreCase("Forms"))
 				{
-					intent = new Intent(EditCase.this, ChooseForm.class);
+					String formName = childData.get(groupPosition).get(childPosition).get("CHILD_NAME");
+					if (formName.equals("Incident Report"))
+					{
+						intent = new Intent(EditCase.this, Incident_Report.class);
+					}
+					else
+					{
+						intent = new Intent(EditCase.this, ChooseForm.class);
+					}
 				}
 				startActivity(intent);
 				return false;
