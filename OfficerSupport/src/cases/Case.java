@@ -2,28 +2,26 @@ package cases;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.Map;
 
 @SuppressWarnings("serial")
 public class Case implements Serializable {
 	
-	private HashMap<String, Person> witnessMap; 		//map of name to person object
-	private HashMap<Integer, Person> suspectMap; 		//map of suspect # to suspect; # since name may be unknown
+	private HashMap<String, Person> witnessMap; 	//map of name to person object
+	private HashMap<Integer, Person> suspectMap; 	//map of suspect # to suspect; # since name may be unknown
 	private HashMap<String, Form> formMap;			//map of type of form to form
-	private String[] witnesses;
-	private String[] suspects;
-	private String[] forms;
 	private String name;							//name of case
 	private String description;						//description of case
 	private Integer caseNum;						//# of case
 	
-	public Case(String[] witnesses, String[] suspects, String[] forms, String name, String description, int caseNum) 
+	public Case(String name, String description, int caseNum, HashMap<String, Person> witnesses, HashMap<Integer, Person> suspects, HashMap<String, Form> forms) 
 	{	
-		this.witnesses = witnesses;
-		this.suspects = suspects;
-		this.forms = forms;
 		this.name = name;
 		this.description = description;
 		this.caseNum = caseNum;
+		this.witnessMap = witnesses;
+		this.suspectMap = suspects;
+		this.formMap = forms;
 	}
 
 	void addWitness(Person p)
@@ -84,30 +82,6 @@ public class Case implements Serializable {
 	public String toString() {
 		return "Case " + caseNum.toString() + ": " + name + "\n" + description;
 	}
-
-	public String[] getWitnesses() {
-		return witnesses;
-	}
-
-	public void setWitnesses(String[] witnesses) {
-		this.witnesses = witnesses;
-	}
-
-	public String[] getSuspects() {
-		return suspects;
-	}
-
-	public void setSuspects(String[] suspects) {
-		this.suspects = suspects;
-	}
-
-	public String[] getForms() {
-		return forms;
-	}
-
-	public void setForms(String[] forms) {
-		this.forms = forms;
-	}
 	
 	public String getString(String[] s)
 	{
@@ -121,5 +95,29 @@ public class Case implements Serializable {
 			}
 		}
 		return result;
+	}
+
+	public HashMap<String, Person> getWitnessMap() {
+		return witnessMap;
+	}
+
+	public void setWitnessMap(HashMap<String, Person> witnessMap) {
+		this.witnessMap = witnessMap;
+	}
+
+	public HashMap<Integer, Person> getSuspectMap() {
+		return suspectMap;
+	}
+
+	public void setSuspectMap(HashMap<Integer, Person> suspectMap) {
+		this.suspectMap = suspectMap;
+	}
+
+	public HashMap<String, Form> getFormMap() {
+		return formMap;
+	}
+
+	public void setFormMap(HashMap<String, Form> formMap) {
+		this.formMap = formMap;
 	}
 }
