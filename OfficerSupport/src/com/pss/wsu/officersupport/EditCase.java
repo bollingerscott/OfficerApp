@@ -33,6 +33,7 @@ public class EditCase extends ExpandableListActivity {
 	private List<Map<String, String>> groupData = new ArrayList<Map<String, String>>();
 	private List<List<Map<String, String>>> childData = new ArrayList<List<Map<String, String>>>();
 	private static CaseDataSource datasource;
+	private boolean update;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +67,11 @@ public class EditCase extends ExpandableListActivity {
 			id.setText(myCase.getCaseNum().toString());
 			title.setText(myCase.getName());
 			descr.setText(myCase.getDescription());
+			update = true;
+		}
+		if (myCase.getName().equals(""))
+		{
+			update = false;
 		}
 		// Listview on child click listener
         listView.setOnChildClickListener(new OnChildClickListener() {
@@ -76,7 +82,12 @@ public class EditCase extends ExpandableListActivity {
 				Intent intent = null;
 				if (item.equalsIgnoreCase("Suspects") || item.equalsIgnoreCase("Witnesses"))
 				{
+					String name = childData.get(groupPosition).get(childPosition).get("CHILD_NAME");
+					String[] names = name.split(" ");
+					Person p = datasource.findPerson(names[0], names[1]);
 					intent = new Intent(EditCase.this, EditPerson.class);
+					intent.putExtra("myPerson", p);
+					intent.putExtra("myCase", myCase);
 				}
 				else if (item.equalsIgnoreCase("Forms"))
 				{
@@ -112,30 +123,74 @@ public class EditCase extends ExpandableListActivity {
 		int id = item.getItemId();
 		if (id == R.id.newWitness) {
 			Intent intent = new Intent(this, EditPerson.class);
+			String title = ((EditText)findViewById(R.id.editTitle)).getText().toString();
+			String descr = ((EditText)findViewById(R.id.editDescr)).getText().toString();
+			Integer id1;
+			try
+			{
+				id1 = Integer.parseInt(((EditText)findViewById(R.id.editid)).getText().toString());
+			}
+			catch (NumberFormatException e)
+			{
+				id1 = 0;
+			}
+			myCase.setCaseNum(id1);
+			myCase.setDescription(descr);
+			myCase.setName(title);
 			intent.putExtra("myCase", myCase);
+			intent.putExtra("type", "witness");
 			startActivity(intent);
 			return true;
 		}
 		else if (id == R.id.newSuspect) {
 			Intent intent = new Intent(this, EditPerson.class);
+			String title = ((EditText)findViewById(R.id.editTitle)).getText().toString();
+			String descr = ((EditText)findViewById(R.id.editDescr)).getText().toString();
+			Integer id1;
+			try
+			{
+				id1 = Integer.parseInt(((EditText)findViewById(R.id.editid)).getText().toString());
+			}
+			catch (NumberFormatException e)
+			{
+				id1 = 0;
+			}
+			myCase.setCaseNum(id1);
+			myCase.setDescription(descr);
+			myCase.setName(title);
 			intent.putExtra("myCase", myCase);
+			intent.putExtra("type", "suspect");
 			startActivity(intent);
 			return true;
 		}
 		else if (id == R.id.newForm) {
 			Intent intent = new Intent(this, ChooseForm.class);
+			String title = ((EditText)findViewById(R.id.editTitle)).getText().toString();
+			String descr = ((EditText)findViewById(R.id.editDescr)).getText().toString();
+			Integer id1;//i really should put this into a method
+			try
+			{
+				id1 = Integer.parseInt(((EditText)findViewById(R.id.editid)).getText().toString());
+			}
+			catch (NumberFormatException e)
+			{
+				id1 = 0;
+			}
+			myCase.setCaseNum(id1);
+			myCase.setDescription(descr);
+			myCase.setName(title);
 			intent.putExtra("myCase", myCase);
 			startActivity(intent);
 			return true;
 		}
 		else if (id == R.id.save) {
-			save();
+			save(update);
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
 	
-	private void save()
+	private void save(boolean update)
 	{
 		String title = ((EditText)findViewById(R.id.editTitle)).getText().toString();
 		String descr = ((EditText)findViewById(R.id.editDescr)).getText().toString();
@@ -150,7 +205,16 @@ public class EditCase extends ExpandableListActivity {
 		}
 		//ExpandableListView just displays info, editPerson and form activities save those to the DB
 		//and they will already be in myCase when this activity recreates....I hope
-		datasource.createCase(id, title, descr, myCase.getWitnessMap(), myCase.getSuspectMap(), myCase.getFormMap());
+		if (!update)
+		{
+			datasource.createOrUpdateCase(id, title, descr, myCase.getWitnessMap(), myCase.getSuspectMap(), myCase.getFormMap());
+		}
+		else 
+		{
+			datasource.createOrUpdateCase(id, title, descr, myCase.getWitnessMap(), myCase.getSuspectMap(), myCase.getFormMap());
+		}
+		Intent intent = new Intent(this, CaseList.class);
+		startActivity(intent);
 	}
 
 	public void getCaseData()

@@ -44,15 +44,73 @@ public class CaseDataSource {
 		dbHelper.close();
 	}
 
+	public Person findPerson(String firstname, String lastname)
+	{
+		Person p = null;
+		String[] args = new String[2];
+		args[0] = firstname;
+		args[1] = lastname;
+		Cursor cursor = database.query(MySQLiteDbHelper.TABLE_PERSONS, null, "firstname=? AND lastname=?", args, null, null, null);
+		cursor.moveToFirst();
+		String firstName = cursor.getString(cursor.getColumnIndexOrThrow(MySQLiteDbHelper.PERSONS_FNAME));
+		String lastName = cursor.getString(cursor.getColumnIndexOrThrow(MySQLiteDbHelper.PERSONS_LNAME));;
+		String description = cursor.getString(cursor.getColumnIndexOrThrow(MySQLiteDbHelper.PERSONS_DESCR));;
+		double height = cursor.getDouble(cursor.getColumnIndexOrThrow(MySQLiteDbHelper.PERSONS_HEIGHT));
+		int weight = cursor.getInt(cursor.getColumnIndexOrThrow(MySQLiteDbHelper.PERSONS_WEIGHT));
+		String address = cursor.getString(cursor.getColumnIndexOrThrow(MySQLiteDbHelper.PERSONS_ADDRESS));;
+		String phone = cursor.getString(cursor.getColumnIndexOrThrow(MySQLiteDbHelper.PERSONS_PHONE));;
+		String statement = cursor.getString(cursor.getColumnIndexOrThrow(MySQLiteDbHelper.PERSONS_STATEMENT));;
+		String type = cursor.getString(cursor.getColumnIndexOrThrow(MySQLiteDbHelper.PERSONS_TYPE));;
+		p = new Person(firstName, lastName, description, height, weight, address, phone, statement, type, 0);
+		return p;
+	}
 	
-	public Case createCase(int num, String title, String descr, HashMap<String, Person> witnesses, HashMap<Integer, Person> suspects, HashMap<String, Form> forms){
-		Case newCase = new Case(title, descr, num, witnesses, suspects, forms);
+	public long insertPerson(Person p)
+	{
+		ContentValues values = new ContentValues();
+		values.put(MySQLiteDbHelper.PERSONS_ADDRESS, p.getAddress());
+		values.put(MySQLiteDbHelper.PERSONS_DESCR, p.getDescription());
+		values.put(MySQLiteDbHelper.PERSONS_FNAME, p.getFirstName());
+		values.put(MySQLiteDbHelper.PERSONS_LNAME, p.getLastName());
+		values.put(MySQLiteDbHelper.PERSONS_HEIGHT, p.getHeight());
+		values.put(MySQLiteDbHelper.PERSONS_WEIGHT, p.getWeight());
+		//values.put(MySQLiteDbHelper.PERSONS_ID, p.getNum());
+		values.put(MySQLiteDbHelper.PERSONS_PHONE, p.getPhone());
+		values.put(MySQLiteDbHelper.PERSONS_STATEMENT, p.getStatement());
+		values.put(MySQLiteDbHelper.PERSONS_TYPE, p.getType());
+		return database.insert(MySQLiteDbHelper.TABLE_PERSONS, null, values);	
+	}
+	
+	public void updatePerson(Person p)
+	{
+		ContentValues values = new ContentValues();
+		values.put(MySQLiteDbHelper.PERSONS_ADDRESS, p.getAddress());
+		values.put(MySQLiteDbHelper.PERSONS_DESCR, p.getDescription());
+		values.put(MySQLiteDbHelper.PERSONS_FNAME, p.getFirstName());
+		values.put(MySQLiteDbHelper.PERSONS_LNAME, p.getLastName());
+		values.put(MySQLiteDbHelper.PERSONS_HEIGHT, p.getHeight());
+		values.put(MySQLiteDbHelper.PERSONS_WEIGHT, p.getWeight());
+		//values.put(MySQLiteDbHelper.PERSONS_ID, p.getNum());
+		values.put(MySQLiteDbHelper.PERSONS_PHONE, p.getPhone());
+		values.put(MySQLiteDbHelper.PERSONS_STATEMENT, p.getStatement());
+		values.put(MySQLiteDbHelper.PERSONS_TYPE, p.getType());
+		/*String[] args = new String[2];
+		args[0] = p.getFirstName();
+		args[1] = p.getLastName();*/
+		database.update(MySQLiteDbHelper.TABLE_PERSONS, values, "personid="+p.getNum(), null);	
+	}
+	
+	public void createOrUpdateCase(int num, String title, String descr, HashMap<String, Person> witnesses, HashMap<Integer, Person> suspects, HashMap<String, Form> forms)
+	{
 		//Insert into cases
 		ContentValues values = new ContentValues();
 		values.put(MySQLiteDbHelper.CASE_ID, num);
 		values.put(MySQLiteDbHelper.CASE_TITLE, title);
 		values.put(MySQLiteDbHelper.CASE_DESCR, descr);
-		database.insert(MySQLiteDbHelper.TABLE_CASES, null, values);
+		if (database.update(MySQLiteDbHelper.TABLE_CASES, values, "caseid="+num, null) == 0)
+		{
+			database.insert(MySQLiteDbHelper.TABLE_CASES, null, values);
+		}
 		//Insert into FormsCases
 		ContentValues fc = new ContentValues();
 		Set<String> types = forms.keySet();
@@ -67,7 +125,10 @@ public class CaseDataSource {
 			int fid = c.getInt(c.getColumnIndexOrThrow(MySQLiteDbHelper.FORMS_ID));
 			fc.put(MySQLiteDbHelper.FORMS_CASES_CASEID, num);
 			fc.put(MySQLiteDbHelper.FORMS_CASES_FORMID, fid);
-			database.insert(MySQLiteDbHelper.TABLE_FORMS_CASES, null, fc);
+			if (database.update(MySQLiteDbHelper.TABLE_FORMS_CASES, fc, "caseid="+num, null) == 0)
+			{
+				database.insert(MySQLiteDbHelper.TABLE_FORMS_CASES, null, fc);
+			}
 		}
 		//Insert into table for form
 		Set<Entry<String, Form>> fs = forms.entrySet();
@@ -80,16 +141,19 @@ public class CaseDataSource {
 		}
 		//Insert witnesses into persons
 		Set<Entry<String, Person>> w = witnesses.entrySet();
+		System.out.println("UPDATE: " + w.size());
 		Iterator<Entry<String, Person>> wit = w.iterator();
 		while (wit.hasNext())
 		{
 			Entry<String, Person> p = wit.next();
 			Person p1 = p.getValue();
-			long id = p1.save(database);
 			ContentValues v = new ContentValues();
-			v.put(MySQLiteDbHelper.PERSONS_CASES_PERSONID, id);
+			v.put(MySQLiteDbHelper.PERSONS_CASES_PERSONID, p1.getNum());
 			v.put(MySQLiteDbHelper.PERSONS_CASES_CASEID, num);
-			database.insert(MySQLiteDbHelper.TABLE_PERSONS_CASES, null, v);
+			if (database.update(MySQLiteDbHelper.TABLE_PERSONS_CASES, v, "personid="+p1.getNum(), null) == 0)
+			{
+				database.insert(MySQLiteDbHelper.TABLE_PERSONS_CASES, null, v);
+			}
 		}
 		//Insert suspects into persons
 		Set<Entry<Integer, Person>> s = suspects.entrySet();
@@ -98,13 +162,14 @@ public class CaseDataSource {
 		{
 			Entry<Integer, Person> p = sit.next();
 			Person p1 = p.getValue();
-			long id = p1.save(database);
 			ContentValues v = new ContentValues();
-			v.put(MySQLiteDbHelper.PERSONS_CASES_PERSONID, id);
+			v.put(MySQLiteDbHelper.PERSONS_CASES_PERSONID, p1.getNum());
 			v.put(MySQLiteDbHelper.PERSONS_CASES_CASEID, num);
-			database.insert(MySQLiteDbHelper.TABLE_PERSONS_CASES, null, v);
+			if (database.update(MySQLiteDbHelper.TABLE_PERSONS_CASES, v, "personid="+p1.getNum(), null) == 0)
+			{
+				database.insert(MySQLiteDbHelper.TABLE_PERSONS_CASES, null, v);
+			}
 		}
-		return newCase;
 	}
 
 	public void deleteCase(long caseNum) {
@@ -129,7 +194,6 @@ public class CaseDataSource {
 			cases.add(aCase);
 			cursor.moveToNext();
 		}
-		// make sure to close the cursor
 		cursor.close();
 		return cases;
 	}
@@ -144,20 +208,23 @@ public class CaseDataSource {
 		//Get the person ids of people linked to this case
 		Cursor c = database.query(true, MySQLiteDbHelper.TABLE_PERSONS_CASES, null, MySQLiteDbHelper.CASE_ID+"="+id, null, null, null, null, null, null);
 		c.moveToFirst();
+		System.out.println("ROWS for c: " + c.getCount());
 		while (!c.isAfterLast())
 		{
 			//Get the person linked to this case
 			Cursor c1 = database.query(true, MySQLiteDbHelper.TABLE_PERSONS, null, MySQLiteDbHelper.PERSONS_ID+"="+c.getInt(c.getColumnIndex(MySQLiteDbHelper.PERSONS_CASES_PERSONID)), null, null, null, null, null, null);
 			c1.moveToFirst();
+			System.out.println("ROWS: " + c1.getCount());
 			Person p = cursorToPerson(c1);
 			String type = p.getType();
-			if (type.equalsIgnoreCase("W"))
+			System.out.println("TYPE: " + type);
+			if (type.equalsIgnoreCase("witness"))
 			{
 				witnesses.put(p.getFirstName() + " " + p.getLastName(), p);
 			}
-			else if (type.equalsIgnoreCase("S"))
+			else if (type.equalsIgnoreCase("suspect"))
 			{
-				suspects.put(p.getNum(), p);
+				suspects.put(((int)p.getNum()), p);
 			}
 			c.moveToNext();
 		}

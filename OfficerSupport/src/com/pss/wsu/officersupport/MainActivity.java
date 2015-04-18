@@ -16,7 +16,6 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		CaseDataSource caseDataSource = CaseDataSource.getDataSource(this);
 		caseDataSource.open();
-		System.out.println("");
 	}
 
 	@Override

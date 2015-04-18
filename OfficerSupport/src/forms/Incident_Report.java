@@ -41,6 +41,11 @@ public class Incident_Report extends Form {
 		this.reportTime = reportTime;
 	}
 	
+	public Incident_Report()
+	{
+		
+	}
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

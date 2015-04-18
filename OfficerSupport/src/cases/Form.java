@@ -1,9 +1,11 @@
 package cases;
 
+import java.io.Serializable;
+
 import android.app.Activity;
 import android.database.sqlite.SQLiteDatabase;
 
-public abstract class Form extends Activity{
+public abstract class Form extends Activity implements Serializable {
 	
 	private String type;
 	

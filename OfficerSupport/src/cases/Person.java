@@ -1,11 +1,13 @@
 package cases;
 
+import java.io.Serializable;
+
 import com.pss.wsu.officersupport.MySQLiteDbHelper;
 
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 
-public class Person {
+public class Person implements Serializable {
 
 	private String firstName;
 	private String lastName;
@@ -16,11 +18,11 @@ public class Person {
 	private String phone;
 	private String statement;
 	private String type;
-	private int num;
+	private long num;
 	
 	public Person(String firstName, String lastName, String description,
 			double height, int weight, String address, String phone,
-			String statement, String type, int num) {
+			String statement, String type, long num) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.description = description;
@@ -137,11 +139,11 @@ public class Person {
 		this.type = type;
 	}
 
-	public int getNum() {
+	public long getNum() {
 		return num;
 	}
 
-	public void setNum(int num) {
+	public void setNum(long num) {
 		this.num = num;
 	}
 }

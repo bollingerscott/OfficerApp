@@ -99,7 +99,7 @@ public class MySQLiteDbHelper extends SQLiteOpenHelper {
 	
 	private static final String CREATE_PERSONS = "create table " 
 			+ TABLE_PERSONS + "(" +
-			PERSONS_ID + " integer primary key, " +
+			PERSONS_ID + " integer primary key autoincrement, " +
 			PERSONS_FNAME + " text, " +
 			PERSONS_LNAME + " text, " +
 			PERSONS_DESCR + " text, " + 
