@@ -3,5 +3,6 @@
     <color name="darkBlue">#191982</color>
     <color name="midBlue">#2929A1</color>
     <color name="lightBlue">#4848A9</color>
+     <color name="white">#FFFFFFFF</color>
     
 </resources>

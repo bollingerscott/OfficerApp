@@ -52,8 +52,7 @@
         </activity>
         <activity
             android:name=".EditCase"
-            android:label="@string/title_activity_edit_case" 
-            android:parentActivityName=".CaseList" >
+            android:label="@string/title_activity_edit_case" >
         </activity>
         <activity
             android:name=".Map"
@@ -88,6 +87,10 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
+        <activity
+            android:name=".AudioRecording"
+            android:label="@string/title_activity_audio_recording" >
+        </activity>
         <activity
             android:name="forms.Incident_Report"
             android:label="@string/title_activity_incident__report" >
