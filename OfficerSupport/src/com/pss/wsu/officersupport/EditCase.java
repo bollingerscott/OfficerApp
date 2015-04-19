@@ -92,13 +92,16 @@ public class EditCase extends ExpandableListActivity {
 				else if (item.equalsIgnoreCase("Forms"))
 				{
 					String formName = childData.get(groupPosition).get(childPosition).get("CHILD_NAME");
-					if (formName.equals("Incident Report"))
+					if (formName.equalsIgnoreCase("Incident Report"))
 					{
 						intent = new Intent(EditCase.this, Incident_Report.class);
+						intent.putExtra("myCase", myCase);
+						intent.putExtra("myForm", myCase.getFormMap().get(formName));
 					}
 					else
 					{
 						intent = new Intent(EditCase.this, ChooseForm.class);
+						intent.putExtra("myCase", myCase);
 					}
 				}
 				startActivity(intent);

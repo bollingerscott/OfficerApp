@@ -52,7 +52,8 @@
         </activity>
         <activity
             android:name=".EditCase"
-            android:label="@string/title_activity_edit_case" >
+            android:label="@string/title_activity_edit_case" 
+            android:parentActivityName=".CaseList" >
         </activity>
         <activity
             android:name=".Map"

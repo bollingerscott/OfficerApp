@@ -28,6 +28,7 @@ public class Incident_Report extends Form {
 	private String reportDate;
 	private String reportTime;
 	private Case myCase;
+	private Incident_Report myForm;
 	
 	public Incident_Report(String district, String number, String type, String tod, String toa, String toc, String reportDate, String reportTime)
 	{
@@ -53,6 +54,37 @@ public class Incident_Report extends Form {
 		setType("Incident Report");
 		Intent intent = getIntent();
 		myCase = (Case)intent.getSerializableExtra("myCase");
+		myForm = (Incident_Report)intent.getSerializableExtra("myForm");
+		if (myForm != null)
+		{
+			EditText district = (EditText) findViewById(R.id.editDistrict);
+			EditText num = (EditText) findViewById(R.id.editIncidentNum);
+			EditText toa = (EditText) findViewById(R.id.editTOA);
+			EditText toc = (EditText) findViewById(R.id.editTOC);
+			EditText tod = (EditText) findViewById(R.id.editTOD);
+			EditText time = (EditText) findViewById(R.id.editReportTime);
+			EditText date = (EditText) findViewById(R.id.editReportDate);
+			district.setText(myForm.getDistrict());
+			num.setText(myForm.getNumber());
+			toa.setText(myForm.getToa());
+			toc.setText(myForm.getToc());
+			tod.setText(myForm.getTod());
+			time.setText(myForm.getReportTime());
+			date.setText(myForm.getReportDate());
+			RadioGroup typeGroup = (RadioGroup) findViewById(R.id.radioGroupoffORsupp);
+			RadioButton offense = (RadioButton)typeGroup.getChildAt(0);
+			RadioButton supplement = (RadioButton) typeGroup.getChildAt(1);
+			if (myForm.getType().equalsIgnoreCase("offense"))
+			{
+				offense.setChecked(true);
+				supplement.setChecked(false);
+			}
+			else 
+			{
+				offense.setChecked(false);
+				supplement.setChecked(true);
+			}
+		}
 	}
 
 	@Override

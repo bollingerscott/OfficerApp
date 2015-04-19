@@ -50,6 +50,6 @@
     <string name="audioRecordStatement">Audio Record Statement</string>
     <string name="title_activity_audio_recording">Audio Recording</string>
     <string name="title_activity_incident__report">Incident Report</string>
-
+	<string name="delete">Delete</string>
 
 </resources>

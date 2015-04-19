@@ -19,7 +19,7 @@ public class EditPerson extends Activity {
 	private Person myPerson;
 	private CaseDataSource datasource;
 	private boolean update;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -100,9 +100,32 @@ public class EditPerson extends Activity {
 			save(update);
 			return true;
 		}
+		else if (id == R.id.delete) {
+			delete();
+			return true;
+		}
 		return super.onOptionsItemSelected(item);
 	}
-	
+
+	public void delete()
+	{
+		if (myPerson != null)
+		{
+			datasource.deletePerson(myPerson.getNum(), myCase.getCaseNum());
+			if (myPerson.getType().equalsIgnoreCase("witness"))
+			{
+				myCase.getWitnessMap().remove(myPerson.getFirstName() + " " + myPerson.getLastName());
+			}
+			else 
+			{
+				myCase.getSuspectMap().remove(myPerson.getNum());
+			}
+			Intent intent = new Intent(this, EditCase.class);
+			intent.putExtra("case", myCase);
+			startActivity(intent);
+		}
+	}
+
 	private void save(boolean update)
 	{
 		String firstName = ((EditText)findViewById(R.id.editFname)).getText().toString();
@@ -133,16 +156,12 @@ public class EditPerson extends Activity {
 		int selectedID = typeGroup.getCheckedRadioButtonId();
 		String type = ((RadioButton)findViewById(selectedID)).getText().toString();
 		System.out.println(type);
-		Integer num = 0;
-		try
-		{
-			//num = Integer.parseInt(((EditText)findViewById(R.id.editid)).getText().toString());
-		}
-		catch (NumberFormatException e)
-		{
-			num = 0;
-		}
+		Long num = 0L;
 		Person p = new Person(firstName, lastName, description, height, weight, address, phone, statement, type, num);
+		if (!update)
+		{
+			p.setNum(datasource.insertPerson(p));
+		}
 		if (type.equalsIgnoreCase("Suspect"))
 		{
 			myCase.getSuspectMap().put((int)p.getNum(), p);
@@ -151,11 +170,7 @@ public class EditPerson extends Activity {
 		{
 			myCase.getWitnessMap().put(p.getFirstName() + " " + p.getLastName(), p);
 		}
-		if (!update)
-		{
-			p.setNum(datasource.insertPerson(p));
-		}
-		else 
+		if (update)
 		{
 			datasource.updatePerson(p);
 		}

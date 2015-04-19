@@ -2,6 +2,7 @@ package com.pss.wsu.officersupport;
 
 import java.util.ArrayList;
 
+import cases.Case;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import forms.Incident_Report;
 public class ChooseForm extends ListActivity {
 
 	private ArrayList<String> forms;
+	private Case myCase;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +24,8 @@ public class ChooseForm extends ListActivity {
 		setContentView(R.layout.activity_choose_form);
 		forms = new ArrayList<String>();
 		initForms();
+		Intent intent = getIntent();
+		myCase = (Case)intent.getSerializableExtra("myCase");
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, forms);
 		setListAdapter(adapter);
 	}
@@ -30,6 +34,7 @@ public class ChooseForm extends ListActivity {
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		String item = (String) getListAdapter().getItem(position);
 		Intent intent = getFormActivity(item);
+		intent.putExtra("myCase", myCase);
 		startActivity(intent);
 	}
 

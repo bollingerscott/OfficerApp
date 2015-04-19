@@ -100,6 +100,18 @@ public class CaseDataSource {
 		database.update(MySQLiteDbHelper.TABLE_PERSONS, values, "personid="+p.getNum(), null);	
 	}
 	
+	public void deletePerson(long personid, Integer caseid) {
+		System.out.println(personid);
+		System.out.println(caseid);
+		int id = database.delete(MySQLiteDbHelper.TABLE_PERSONS, MySQLiteDbHelper.PERSONS_ID
+				+ "=" + personid, null);
+		System.out.println("Person deleted with id: " + id);
+		int cid = database.delete(MySQLiteDbHelper.TABLE_PERSONS_CASES, MySQLiteDbHelper.PERSONS_CASES_PERSONID
+				+ "=" + personid + " AND " + MySQLiteDbHelper.PERSONS_CASES_CASEID 
+				+ "=" + caseid, null);
+		System.out.println("Case deleted with id: " + cid);
+	}
+	
 	public void createOrUpdateCase(int num, String title, String descr, HashMap<String, Person> witnesses, HashMap<Integer, Person> suspects, HashMap<String, Form> forms)
 	{
 		//Insert into cases
