@@ -50,6 +50,9 @@
     <string name="audioRecordStatement">Audio Record Statement</string>
     <string name="title_activity_audio_recording">Audio Recording</string>
     <string name="title_activity_incident__report">Incident Report</string>
-
+    <string name="title_activity_picture_video">PictureVideoActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_photo_video">PhotoVideoActivity</string>
 
 </resources>

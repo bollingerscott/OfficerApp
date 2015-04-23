@@ -76,9 +76,9 @@ public class AudioRecording extends Activity {
 			@Override
 			public void onClick(View v) {
 				if(!isRecording){
-					//record.setImageResource(R.drawable.blue_record);
+					record.setImageResource(R.drawable.red_record);
 				}else{
-					record.setImageResource(R.drawable.record);
+					record.setImageResource(R.drawable.record_actual);
 				}
 				buttonTapped(v);
 				
@@ -101,11 +101,12 @@ public class AudioRecording extends Activity {
 				buttonTapped(v);
 			}
 		});
+		
 		stop.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				record.setImageResource(R.drawable.record);
+				record.setImageResource(R.drawable.record_actual);
 				if (stop.isSelected()){
 		            stop.setSelected(false);
 		            //...Handle toggle off
@@ -136,13 +137,13 @@ public class AudioRecording extends Activity {
 			isRecording = true;
 			ditchMediaRecorder();
 			mediaRecorder = new MediaRecorder();
-			mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+			mediaRecorder.setAudioSource(MediaRecorder.AudioSource.DEFAULT);
 			mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
 			mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
 			mediaRecorder.setOutputFile(outputFile);
 			mediaRecorder.prepare();
 			mediaRecorder.start();
-			
+			quickMessage("Recording");
 					
 		
 	}
@@ -156,11 +157,13 @@ public class AudioRecording extends Activity {
 		mediaPlayer.setDataSource(outputFile);
 		mediaPlayer.prepare();
 		mediaPlayer.start();
+		quickMessage("Playing Recording");
 	}
 	
 	private void stopRecording() {
 		if(mediaRecorder != null){
 		mediaRecorder.stop();
+		quickMessage("Stopping Recording");
 		}
 		isRecording = false;
 	}

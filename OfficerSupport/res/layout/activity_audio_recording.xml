@@ -17,7 +17,7 @@
             android:layout_height="60dp"
             android:layout_weight="1"
             android:background="@drawable/login_button"
-            android:src="@drawable/record" >
+            android:src="@drawable/record_actual" >
         </ImageButton>
 
         <ImageButton

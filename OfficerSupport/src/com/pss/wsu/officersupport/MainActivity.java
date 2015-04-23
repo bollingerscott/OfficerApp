@@ -50,4 +50,9 @@ public class MainActivity extends Activity {
 		Intent i = new Intent(this, AudioRecording.class);
 		startActivity(i);
 	}
+	
+	public void goToPhotoVideo(View view){
+		Intent i = new Intent(this, PhotoVideoActivity.class);
+		startActivity(i);
+	}
 }
