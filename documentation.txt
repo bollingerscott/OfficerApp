@@ -1,0 +1,159 @@
+Wright State Senior Design PSS Officer Support Android Application Project Documentation
+
+Database Design for Case Documentation Assistance Feature:
+Tables:
+--Table for the cases
+Cases(caseid INTEGER (PK), title TEXT, description TEXT)
+
+--Table for Witnesses/Suspects
+Persons(personid INTEGER, firstname TEXT, lastname TEXT, description TEXT, height TEXT, weight TEXT, address TEXT, phone TEXT, type TEXT, statement TEXT)
+
+--Linking Table for Witnesses/Suspects and Cases
+Persons_Cases(personid INTEGER (FK), caseid INTEGER (FK))
+
+--Lookup Table that stores form type
+Forms(formid INTEGER (PK), name TEXT)
+
+--The table for the incident report form
+--NOTE: there are many more fields on the actual form
+Incidents(incidentID INTEGER(PK), district TEXT, number TEXT, type TEXT, tod TEXT, toa TEXT, toc TEXT, reportdate TEXT, reporttime TEXT, caseid INTEGER (FK))
+
+--Linking table for forms and cases
+Forms_Cases(formcaseid INTEGER (PK), caseid INTEGER (FK), formid INTEGER (FK))
+
+	 * To find forms belonging to case:
+	 * 1. Query forms_cases, to find forms belonging to the case
+	 * 2. Use forms table and lookup what form it is
+	 * 3. Use result to look up the form from certain table
+	 
+--Used to interface with the database
+--NOTE: CaseDataSource is a singleton and should be instantiated by CaseDataSource source = CaseDataSource.getDataSource(this);
+CaseDataSource:
+
+public:
+--Opens the Database
+void open() throw SQLiteException
+
+--Closes the Database
+void close()
+
+--Queries the database to find a person based on their name
+--Returns the first person found as a Person object
+Person findPerson(String firstname, String lastname)
+
+--Inserts the given Person object into the database
+--Returns the id of the inserted record
+long insertPerson(Person p)
+
+--Updates a record in persons given a Person object
+void updatePerson(Person p)
+
+--Deletes a person given their id and the caseid of the case they belong to
+--BUG: Doesn't seem to actually delete any records
+deletePerson(long personid, Integer caseid)
+
+--Creates or updates a case if it already exist, given the case information
+void createOrUpdateCase(int num, String title, String descr, HashMap<String, Person> witnesses, HashMap<Integer, Person> suspects, HashMap<String, Form> forms)
+
+--Deletes a case given the caseid
+--BUG: Doesn't seem to actually delete any records
+void deleteCase(long caseNum)
+
+--Deletes everything from the cases table
+void deleteAll()
+
+--Returns a list of Case objects created from querying all case records in the database
+List<Case> getAllCases()
+
+--Finds a case given a search string
+--Returns the case as a  Case object
+Case findCase(String search)
+
+private:
+--Turns a cursor into a Case object
+Case cursorToCase(Cursor cursor)
+
+--Turns a cursor into a Person object
+Person cursorToPerson(Cursor c)
+
+--Object Classes
+Case:
+Fields:
+	private HashMap<String, Person> witnessMap; 	//map of name to person object
+	private HashMap<Integer, Person> suspectMap; 	//map of suspect # to suspect; # since name may be unknown
+	private HashMap<String, Form> formMap;			//map of type of form to form
+	private String name;							//name of case
+	private String description;						//description of case
+	private Integer caseNum;						//# of case
+Methods:
+Typical getters and setters
+
+Person:
+Fields:
+	private String firstName;
+	private String lastName;
+	private String description;
+	private double height;
+	private int weight;
+	private String address;
+	private String phone;
+	private String statement;
+	private String type;
+	private long num;
+Methods:
+Typical getters and setters
+
+Forms:
+--Abstract class
+--Extends Activity
+--All form activities should extend this class
+
+
+Activites:
+MainActivity:
+--Contains buttons to go to the list of cases, video, audio, and map
+
+CaseList:
+--Lists the cases in a ListView
+--When a case is tapped the EditCase activity comes up
+
+EditCase:
+--Displays case info
+--Displays witnesses/suspects/forms in an ExpandableListView
+--Menu for adding new witnesses/suspects/forms
+--ActionBar has buttons for saving/deleting the case
+
+EditPerson:
+--Displays witnesses/suspect info
+--ActionBar has buttons for saving/deleting persons
+
+Incident_Report:
+--Displays fields for the incident report form
+--ActionBar has buttons for saving/deleting the form
+
+ChooseForm:
+--Displayed after selecting new form in menu in EditCase
+--Displays types of forms available in a ListView
+
+CaseSearch:
+--Displays the search results when searching for a case
+--Search is by title of the case
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
