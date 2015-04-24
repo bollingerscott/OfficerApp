@@ -1,5 +1,6 @@
 package com.pss.wsu.officersupport;
 
+import cases.CaseDataSource;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +14,8 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		CaseDataSource caseDataSource = CaseDataSource.getDataSource(this);
+		caseDataSource.open();
 	}
 
 	@Override
@@ -48,11 +51,6 @@ public class MainActivity extends Activity {
 	
 	public void goToRecording(View view){
 		Intent i = new Intent(this, AudioRecording.class);
-		startActivity(i);
-	}
-	
-	public void goToPhotoVideo(View view){
-		Intent i = new Intent(this, PhotoVideoActivity.class);
 		startActivity(i);
 	}
 }

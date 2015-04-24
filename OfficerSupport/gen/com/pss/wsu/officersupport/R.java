@@ -471,23 +471,24 @@ containing a value of this type.
         public static final int common_signin_btn_text_normal_light=0x7f02001a;
         public static final int common_signin_btn_text_pressed_dark=0x7f02001b;
         public static final int common_signin_btn_text_pressed_light=0x7f02001c;
-        public static final int ic_action_new=0x7f02001d;
-        public static final int ic_action_save=0x7f02001e;
-        public static final int ic_action_search=0x7f02001f;
-        public static final int ic_launcher=0x7f020020;
-        public static final int ic_plusone_medium_off_client=0x7f020021;
-        public static final int ic_plusone_small_off_client=0x7f020022;
-        public static final int ic_plusone_standard_off_client=0x7f020023;
-        public static final int ic_plusone_tall_off_client=0x7f020024;
-        public static final int login_button=0x7f020025;
-        public static final int play=0x7f020026;
-        public static final int powered_by_google_dark=0x7f020027;
-        public static final int powered_by_google_light=0x7f020028;
-        public static final int record=0x7f020029;
-        public static final int record_actual=0x7f02002a;
-        public static final int red_record=0x7f02002b;
-        public static final int stop=0x7f02002c;
-        public static final int world_grey_md=0x7f02002d;
+        public static final int ic_action_discard=0x7f02001d;
+        public static final int ic_action_new=0x7f02001e;
+        public static final int ic_action_save=0x7f02001f;
+        public static final int ic_action_search=0x7f020020;
+        public static final int ic_launcher=0x7f020021;
+        public static final int ic_plusone_medium_off_client=0x7f020022;
+        public static final int ic_plusone_small_off_client=0x7f020023;
+        public static final int ic_plusone_standard_off_client=0x7f020024;
+        public static final int ic_plusone_tall_off_client=0x7f020025;
+        public static final int login_button=0x7f020026;
+        public static final int play=0x7f020027;
+        public static final int powered_by_google_dark=0x7f020028;
+        public static final int powered_by_google_light=0x7f020029;
+        public static final int record=0x7f02002a;
+        public static final int record_actual=0x7f02002b;
+        public static final int red_record=0x7f02002c;
+        public static final int stop=0x7f02002d;
+        public static final int world_grey_md=0x7f02002e;
     }
     public static final class id {
         public static final int Administrative=0x7f0c0034;
@@ -496,7 +497,7 @@ containing a value of this type.
         public static final int TOA=0x7f0c003e;
         public static final int TOC=0x7f0c0040;
         public static final int TOD=0x7f0c003c;
-        public static final int action_settings=0x7f0c0053;
+        public static final int action_settings=0x7f0c0054;
         public static final int addr=0x7f0c002a;
         public static final int adjust_height=0x7f0c0000;
         public static final int adjust_width=0x7f0c0001;
@@ -510,6 +511,7 @@ containing a value of this type.
         public static final int case_number=0x7f0c004b;
         public static final int case_search=0x7f0c004e;
         public static final int classic=0x7f0c0014;
+        public static final int delete=0x7f0c0053;
         public static final int descr=0x7f0c0020;
         public static final int districtTxet=0x7f0c0035;
         public static final int donate_with_google=0x7f0c0013;
@@ -596,15 +598,12 @@ containing a value of this type.
         public static final int actionbar_editcase=0x7f0b0001;
         public static final int actionbar_editperson=0x7f0b0002;
         public static final int audio_recording=0x7f0b0003;
-        public static final int case_list=0x7f0b0004;
-        public static final int case_search=0x7f0b0005;
-        public static final int choose_form=0x7f0b0006;
-        public static final int edit_case=0x7f0b0007;
-        public static final int edit_person=0x7f0b0008;
-        public static final int incident__report=0x7f0b0009;
-        public static final int main=0x7f0b000a;
-        public static final int map=0x7f0b000b;
-        public static final int photo_video=0x7f0b000c;
+        public static final int case_search=0x7f0b0004;
+        public static final int choose_form=0x7f0b0005;
+        public static final int incident__report=0x7f0b0006;
+        public static final int main=0x7f0b0007;
+        public static final int map=0x7f0b0008;
+        public static final int photo_video=0x7f0b0009;
     }
     public static final class raw {
         public static final int gtm_analytics=0x7f050000;
@@ -721,6 +720,7 @@ containing a value of this type.
         public static final int create_calendar_message=0x7f070005;
         public static final int create_calendar_title=0x7f070004;
         public static final int decline=0x7f070003;
+        public static final int delete=0x7f070058;
         public static final int description=0x7f070041;
         public static final int district=0x7f070030;
         public static final int dummy_button=0x7f070055;

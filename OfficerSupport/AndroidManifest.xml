@@ -56,7 +56,8 @@
         </activity>
         <activity
             android:name=".EditCase"
-            android:label="@string/title_activity_edit_case" >
+            android:label="@string/title_activity_edit_case" 
+            android:parentActivityName=".CaseList" >
         </activity>
         <activity
             android:name=".Map"
@@ -75,11 +76,13 @@
         </activity>
         <activity
             android:name=".ChooseForm"
-            android:label="@string/title_activity_choose_form" >
+            android:label="@string/title_activity_choose_form" 
+            android:parentActivityName=".EditCase" >
         </activity>
         <activity
             android:name=".EditPerson"
-            android:label="@string/title_activity_edit_person" >
+            android:label="@string/title_activity_edit_person" 
+            android:parentActivityName=".EditCase" >
         </activity>
 
         <meta-data
