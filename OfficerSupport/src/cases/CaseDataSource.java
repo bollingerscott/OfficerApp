@@ -170,7 +170,7 @@ public class CaseDataSource {
 		//Insert suspects into persons
 		Set<Entry<Integer, Person>> s = suspects.entrySet();
 		Iterator<Entry<Integer, Person>> sit = s.iterator();
-		while (form.hasNext())
+		while (sit.hasNext())
 		{
 			Entry<Integer, Person> p = sit.next();
 			Person p1 = p.getValue();
